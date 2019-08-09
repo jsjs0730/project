@@ -722,11 +722,11 @@ CREATE TABLE movie_info (
 	mi_releaseday DATE, /* 개봉일 */
 	mi_ccode VARCHAR2(40), /* 국가명 */
 	mi_actor VARCHAR2(200), /* 출연배우 */
-	mi_story VARCHAR2(1000), /* 줄거리 */
+	mi_story VARCHAR2(2000), /* 줄거리 */
 	mi_teaser VARCHAR2(500), /* 티저 */
-	grade_code VARCHAR2(20), /* 심의등급 */
+	grade_code VARCHAR2(50), /* 심의등급 */
 	mi_gcode VARCHAR2(50), /* 장르 */
-    mi_time VARCHAR2(20) /* 상영시간 */
+    	mi_time VARCHAR2(20) /* 상영시간 */
 );
 
 CREATE UNIQUE INDEX PK_movie_info
@@ -752,7 +752,7 @@ CREATE TABLE movie_rev (
 	mr_update_date DATE NOT NULL, /* 영화리뷰수정일 */
 	mr_score NUMBER NOT NULL, /* 영화리뷰별점 */
 	mr_content VARCHAR2(300) NOT NULL, /* 영화리뷰평가내용 */
-    mr_alert NUMBER /* 신고수 */
+    	mr_alert NUMBER /* 신고수 */
 );
 
 CREATE UNIQUE INDEX PK_movie_rev
@@ -1798,6 +1798,18 @@ create sequence seq_ad_notice_no
    nomaxvalue
    nocycle;
    
+create sequence seq_movie_code
+   start with 1
+   increment by 1
+   nomaxvalue
+   nocycle;
+   
+create sequence seq_mr_code
+   start with 1
+   increment by 1
+   nomaxvalue
+   nocycle;
+   
 /* 트리거 생성 */
 
 create or replace trigger boardQna_to_adQna_delete
@@ -1807,6 +1819,7 @@ delete AD_QNA where qna_no = :old.qna_no;
 end;
 /
 
+/* 
 ```
 
 
